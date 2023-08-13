@@ -32,7 +32,7 @@ pub fn passgen(n: u8) -> Result<String, PassgenError>{
 
 fn main() ->Result<(), PassgenError> {
     
-    let n = 10; 
+    let n = 8; 
     println!("Password {} symbols length: {}", n, passgen(n)?); 
     Ok(())
 }
