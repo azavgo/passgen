@@ -32,6 +32,7 @@ pub fn passgen(n: u8) -> Result<String, PassgenError>{
 
 fn main() ->Result<(), PassgenError> {
     
-    println!("Random number from the password array: {}", passgen(10)?); 
+    let n = 10; 
+    println!("Password {} symbols length: {}", n, passgen(n)?); 
     Ok(())
 }
