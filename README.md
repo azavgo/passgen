@@ -8,7 +8,7 @@
 1. Type passgen in the terminal and press Enter to generate a default 8-character password: 
 ```
 $ passgen
-$ Password 8 characters length: iSPW}y\1
+$ Password 8 characters length (default): iSPW}y\1
 ```
 1. In the terminal type passgen and add a length of the password, e.g a 12-character password: 
 ```
