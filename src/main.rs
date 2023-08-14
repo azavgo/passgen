@@ -3,10 +3,13 @@
 
 use rand::Rng;
 use std::string::{String, FromUtf8Error};
+use std::env;
+use std::num::ParseIntError; 
 
 #[derive(Debug)]
 pub enum PassgenError {
     FromUtf8Error(FromUtf8Error),
+    ParseIntError(ParseIntError),
 }
 
 impl From<FromUtf8Error> for PassgenError {
@@ -15,7 +18,13 @@ impl From<FromUtf8Error> for PassgenError {
     }
 }
 
-pub fn passgen(n: u8) -> Result<String, PassgenError>{
+impl From<ParseIntError> for PassgenError {
+    fn from(error: ParseIntError) -> Self {
+        PassgenError::ParseIntError(error)
+    }
+}
+
+fn passgen(n: u8) -> Result<String, PassgenError>{
     let a:[u8; 88] = [33, 35, 36, 37, 38, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125];
     
     let mut rng = rand::thread_rng();
@@ -30,9 +39,24 @@ pub fn passgen(n: u8) -> Result<String, PassgenError>{
     Ok(password)
 }
 
-fn main() ->Result<(), PassgenError> {
+pub fn passgen_ui() -> Result<(), PassgenError> {
+    let args: Vec<String> = env::args().collect();
     
-    let n = 8; 
-    println!("Password {} symbols length: {}", n, passgen(n)?); 
+    match args.len() > 1 {
+        true => {
+            let n = args[1].parse::<u8>()?;
+            println!("Password {} symbols length: {}", n, passgen(n)?);
+        }, 
+        _    => {
+            println!("Password 8 symbols length: {}", passgen(8)?);    
+        }
+    }
+    Ok(())
+}
+
+fn main() -> Result<(), PassgenError> {
+    
+    passgen_ui()?;
+     
     Ok(())
 }
