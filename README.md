@@ -13,5 +13,5 @@ $ Password 8 characters length: iSPW}y\1
 1. In the terminal type passgen and add a length of the password, e.g a 12-character password: 
 ```
 $ passgen 12
-$ Password 12 symbols length: e>C:kl|2&xt7
+$ Password 12 characters length: e>C:kl|2&xt7
 ```
