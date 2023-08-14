@@ -48,7 +48,7 @@ pub fn passgen_ui() -> Result<(), PassgenError> {
             println!("Password {} characters length: {}", n, passgen(n)?);
         }, 
         _    => {
-            println!("Password 8 characters length: {}", passgen(8)?);    
+            println!("Password 8 characters length (default): {}", passgen(8)?);    
         }
     }
     Ok(())
