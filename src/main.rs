@@ -45,10 +45,10 @@ pub fn passgen_ui() -> Result<(), PassgenError> {
     match args.len() > 1 {
         true => {
             let n = args[1].parse::<u8>()?;
-            println!("Password {} symbols length: {}", n, passgen(n)?);
+            println!("Password {} characters length: {}", n, passgen(n)?);
         }, 
         _    => {
-            println!("Password 8 symbols length: {}", passgen(8)?);    
+            println!("Password 8 characters length: {}", passgen(8)?);    
         }
     }
     Ok(())
